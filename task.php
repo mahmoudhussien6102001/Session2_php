@@ -1,6 +1,6 @@
 <?php
 echo "####################################class Rectangle ###################################################<br>" ;
-
+/*
 class Rectangle {
     private float $length ;
     private float $width ; 
@@ -209,6 +209,235 @@ $account1->debit(30);
 $account1->transferTo(10, $account2);
 
 $account1->showAccount();
-$account2->showAccount()
- 
+$account2->showAccount();
+
+*/
+echo "<br>" ;
+echo "##########################Task Person 4.2 ############################### <br>" ;
+abstract class Person {
+    protected string $name ;
+    protected string $address ;
+    public function __construct($name ,$address){
+        $this->name =$name;
+        $this->address =$address;
+    }
+
+    public function getName():string {
+        return $this->name;
+    }
+    public function setName(string $name ):void{
+        $this->name=$name ;
+
+    }
+    public function getAddress():string {
+        return $this->address;
+    }
+    public function setAddress(string $address ): void {
+        echo  $this->address =$address;
+    }
+    public function displayDetails():void {
+        echo "Name Is :" .$this->getName() ."<br>" . "Address Is :" . $this->getAddress()."<br>";
+
+    }
+
+}
+
+class Student extends Person {
+    private string $program ;
+    private int $year ;
+    private float $fee ;
+    public function __construct(string $name , string $address,string $program ,int $year ,float $fee){
+        parent::__construct($name,$address);
+        $this->program =$program ;
+        $this->year =$year;
+        $this->fee =$fee;
+
+    }
+    public function getProgram():string{
+        return $this->program ;
+    }
+    public function setProgram(string $program):void{
+        echo $this->program=$program ;
+    }
+    public function getYear():int{
+        return $this->year ;
+    }
+    public function setYear(int $year):void{
+        echo $this->year =$year;
+    }
+    public function getFee():float{
+        return $this->fee;
+    }
+    public function setFee(float $fee):void{
+        echo $this->fee =$fee;
+    }
+    // overload 
+    public function displayDetails ():void{
+        echo "Name Is :" .$this->getName() ."<br>" . "Address Is :" . $this->getAddress()."<br>"."Program Is :".$this->getProgram() ."<br>" ."Year Is :".$this->getYear()."<br>"."Fee Is :".$this->getFee()."<br>";
+
+    }
+}
+
+
+class Staff extends Person {
+    private string $school ;
+    private float $pay ;
+    public function __construct(string $name ,string $address,string $school,float $pay){
+        parent::__construct($name,$address);
+        $this->school =$school ;
+        $this->pay =$pay ;
+
+    }
+    public function getSchool():string{
+        return $this->school ;
+    }
+    public function setSchool(string $school):void{
+        echo $this->school=$school ;
+    }
+    public function getPay():float{
+        return $this->pay ;
+    }
+    public function setPay(string $pay):void{
+        echo $this->pay=$pay;
+    }
+    public function displayDetails ():void{
+        echo "Name Is :" .$this->getName() ."<br>" . "Address Is :" . $this->getAddress()."<br>"."School Is :".$this->getSchool() ."<br>" ."Pay Is :".$this->getPay()."<br>";
+
+    }
+
+}
+
+$student = new Student("Awad" ,"Assuit" ,"full_stack using php" ,2024,3.4);
+$student->displayDetails();
+echo "<br>";
+$staff =new Staff("mahmoud","Assuit" ,"computer and information" ,25000);
+$staff ->displayDetails();
+echo "<br>";
+echo "##########################Task Shape 4.5 ############################### <br>" ;
+
+abstract class Shape {
+    protected string $color ;
+    protected bool $filled ;
+    public function __construct(string $color ,string $filled){
+        $this->color=$color ;
+        $this->filled=$filled ;
+    }
+    public function getColor():string{
+        return $this->color ;
+    }
+    public function setColor(string $color):void{
+        echo $this->color=$color ;
+    }
+    public function getIsFilled():bool{
+        return $this->filled ;
+    }
+    public function setIsFilled(string $filled):void{
+        echo $this->filled=$filled ;
+    }
+    abstract public function getArea():float;
+    abstract public function getPerimeter():float;
+    abstract public function display():void;
+    
+}
+
+class Circle extends Shape{
+    private float $radius ;
+    public function __construct(string $color ,bool $filled ,float $radius){
+        parent::__construct($color ,$filled);
+        $this->radius=$radius;
+
+    }
+    public function getRadius():float{
+        return $this->radius ;
+    }
+    public function setRadius(float $radius):void{
+        echo $this->radius=$radius ;
+    }
+    public function getArea():float {
+        return pi() * $this->radius * $this->radius ;
+    }
+    public function getPerimeter():float{
+        return 2 * pi() * $this->radius;
+    }
+    ///overload -- implementation 
+    public function display():void{
+        echo "Color Is :".$this->getColor()."<br>" ."Filled Is :" .($this->getIsFilled() ?"true":"false")."<br>" ."Radius Is : ".$this->getRadius()."<br>"."Area Circle Is :" .$this->getArea()."<br>". "Perimeter Circle Is :" .$this->getPerimeter()."<br>";
+    }
+
+}
+
+class Rectangle extends Shape {
+    private float $length ;
+    private float $width ;
+    public function __construct(string $color ,bool $filled ,float $length ,float $width){
+        parent::__construct($color ,$filled) ;
+        $this->length =$length ;
+        $this->width =$width ;
+
+    }
+
+    public function setLength(float $length):void{
+        echo $this->length =$length ;
+    }
+    public function getLength():float{
+        return $this->length;
+    }
+    public function setWidth(float $width):void{
+        echo $this->width =$width;
+    }
+    public function getWidth():float{
+        return $this->width;
+    }
+    public function getArea():float {
+        return $this->length * $this->width ;
+    }
+    public function getPerimeter():float{
+        return 2 * ($this->length + $this->width);
+    }
+    public function display():void{
+        echo "Color Is :".$this->getColor()."<br>" ."Filled Is :" .($this->getIsFilled() ?"true":"false")."<br>" ."Length Is: ".$this->getLength()."<br>"."Width Is :".$this->getWidth()."<br>"."Area Rect Is :" .$this->getArea()."<br>". "Perimeter Rect Is :" .$this->getPerimeter()."<br>";
+    }
+
+
+
+
+
+}
+
+class Square extends Rectangle{
+    private float $side ;
+    public function __construct(string $color,bool $filled ,float $side ){
+        parent::__construct($color,$filled ,$side,$side);
+    }
+    public function setSide(float $side):void{
+         $this->setWidth($side);
+         $this->setLength($side);
+    }
+    public function getSide():float{
+        return $this->getWidth();
+    }
+    public function getArea():float{
+        return pow($this->getSide(),2);
+    }
+    public function getPerimeter():float{
+        return 4 * $this->getSide();
+    }
+    public function display():void{
+        echo "Color Is :".$this->getColor()."<br>" ."Filled Is :" .($this->getIsFilled() ?"true":"false")."<br>"."Side Square Is :".$this->getSide()."<br>" ."Area Square Is:".$this->getArea()."<br>". "Perimeter Square Is :".$this->getPerimeter()."<br>";
+
+    }
+    
+}
+
+$circle =new Circle("red",true ,10.2);
+$circle ->display();
+echo "<br>";
+$rectangle =new Rectangle("blue" ,false,10,20);
+$rectangle->display();
+echo "<br>";
+$square =new Square("green" ,true ,10);
+$square->display();
+
+
 ?>
+

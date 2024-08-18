@@ -14,6 +14,7 @@
 ** Abdtraction (what object Dose => Hide necessary details =>Secuirty ) 
 ** Polymorphism (overLoading => implementation  && overRide =>paramerter) 
 ** constructor => special Kind of method (don't => return , void )
+** Destructor => is used to perform cleanup operations before an object is destroyed
 
 ** Encapsulation
 **Access Modifies 
@@ -254,4 +255,21 @@ $Calc = new AdvancedCalculator();
 echo $Calc->add(10,20);
 echo "<br>" ;
 echo $Calc->add(10,20,30);
+echo "<br>";
+
+echo "################################ Constructor &&  Destructor ################################<br>";
+
+class myClass {
+    public string $property;
+    public function __construct(string $property)
+    {
+        $this->property=$property;
+    }
+    public function __destruct(){
+        echo "Destroying myClass...".$this->property;
+    }
+}
+
+$obj = new myClass("Hello World");
+unset($obj);
 ?>

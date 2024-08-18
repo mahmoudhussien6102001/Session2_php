@@ -16,7 +16,7 @@
 
   */
 
-
+/*
   class student {
     //attributes , data member ,fields =>variables
     //access every where
